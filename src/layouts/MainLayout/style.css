@@ -1,0 +1,77 @@
+/* 레이아웃 전체 */
+#main-layout {
+    display: grid; /* grid 컨테이너로 지정 */
+    grid-template: /* grid 영역 지정 */ 
+        "logo top" 77px
+        "side main" minmax(944px, auto) /* 촤소, 최대값 지정, 최대값은 자동 지정을 위해 ' auto ' 로 값줌 */
+        / 257px minmax(1182px, 100%);
+    
+
+}
+
+#layout-logo {
+    grid-area: logo;
+
+    display: flex;
+    justify-content: center; /* 가로축 기준 */
+    align-items: center; /* 새로축 기준 */
+
+    border-bottom: 1px solid rgba(233, 236, 239, 1);
+    border-right: 1px solid rgba(233, 236, 239, 1);
+
+        /* 드래그 방지 */
+        user-select: none;
+        -webkit-user-select:none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+}  
+
+#layout-logo .box{
+    display: flex;
+    align-items: center;
+    gap:2px;
+
+    /* 해당 범위에서 커서 모양 안바뀌게 만들기 */
+    cursor: default;
+}
+
+#layout-logo .title{
+    color: rgba(64,64,64,1);
+    font-size:24px;
+    font-weight: 700;
+    line-height: 173%;
+}
+
+#layout-logo .icon {
+    width: 30px;
+    height: 30px;
+
+    background-image: url('/public/images/logo.png');
+    background-size: 100% 100%;
+}
+
+#layout-top {
+    grid-area: top;
+    /* background-color: rgba(255,0,0,0.4) */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(233,236,239,1);
+    padding: 0 24px;
+
+    user-select: none;
+}
+#layout-top .path{
+    color: rgba(64,64,64,1);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#layout-side-navigation {
+    grid-area: side;
+    /* background-color: rgba(0,0,255,0.4) */
+}
+
+
