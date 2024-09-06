@@ -71,7 +71,72 @@
 
 #layout-side-navigation {
     grid-area: side;
-    /* background-color: rgba(0,0,255,0.4) */
+
+    padding: 16px 12px;
 }
 
+#layout-side-navigation .navigation {
+    display: flex;
+    /* flex 방향 : 열의 형태 */
+    flex-direction: column;
+    gap: 10px;
+}
 
+#layout-side-navigation .navigation-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    border-radius: 6px;
+    padding: 8px 24px;
+
+    color: var(--gray-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#layout-side-navigation .navigation-item:hover {
+    cursor:pointer;
+    background-color: var(--primary-10-color);
+}
+
+#layout-side-navigation .navigation-item.active{
+    background-color: var(--primary-color);
+
+    color: rgba(255,255, 255, 1);
+}
+
+#layout-side-navigation .icon {
+    width: 24px;
+    height: 24px;
+
+    background-size: 100% 100%;
+}
+
+#layout-side-navigation .icon.active {
+    opacity: 0.5;
+}
+
+.cs-icon {
+    background-image: url(/public/images/고양이1.jpg);
+}
+
+.mm-icon {
+    background-image: url(/public/images/고양이2.jpg);
+}
+
+.hr-icon {
+    background-image: url(/public/images/고양이3.jpeg);
+}
+
+.cs-active-icon {
+    background-image: url(/public/images/고양이1.jpg);
+}
+
+.mm-active-icon {
+    background-image: url(/public/images/고양이2.jpg);
+}
+
+.hr-active-icon {
+    background-image: url(/public/images/고양이3.jpeg);
+}
