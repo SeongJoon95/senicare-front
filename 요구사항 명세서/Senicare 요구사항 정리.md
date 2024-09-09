@@ -143,3 +143,65 @@
 - 저장 버튼이 관리 중인 고객 리스트 우측 하단에 표시되며 클릭시 수정 내용을 저장함
 - 저장 버튼 클릭 시에 발생하는 에러 문구에 대해서는 브라우저의 알림창으로 표시 / 모든 값이 입력되지 않으면 '모두 입력해주세요.', 백엔드 서버 에러, 데이터베이스 서버 에러를 묶어서 '서버에 문제가 있습니다.'라는 알림을 띄움
 - 목록 버튼이 관리 중인 고객 리스트 좌측 하단에 표시되며 클릭시 인사 리스트 화면으로 이동
+
+---
+
+#### 요구사항 정리를 보고 테이블로 뽑아낼수 있는 것 정리 할 것 
+
+사용자 == 요양사 nurses / 정의할수 있음
+ (아이디, 비밀번호, 이름, 전화번호, 가입경로, sns 아이디)
+
+전화번호 인증 tel auth number
+(전화번호, 인증번호)
+
+고객 customers
+(고객사진, 고객이름, 생년월일, 담당자, 주소, 지역, 고객번호)
+
+용품 tools
+(용품 번호, 용품명, 용도, 개수)
+
+관리 기록 care records
+(날짜, 내용, 사용용품, 갯수, 담당요양사, 고객)
+
+---
+#### 실제 테이블 만들기
+nurses (
+- user_id VARCHAR(20) NN UQ PK
+- password VARCHAR(255)	NN  
+- name VARCHAR(15) NN
+- tel_number VARCHAR(11) NN UQ FK(tel_auth_number)
+- join_path VARCHAR(5) NN
+- sns_id VARCHAR(255)	
+);
+
+tel_auth_number (
+- tel_number VARCHAR(11) NN UQ PK
+- auth_number VARCHAR(4) NN
+);
+
+customers (
+- profile_image	TEXT NN 
+- name VARCHAR(15)	NN 
+- birth VARCHAR(6) NN
+- charger VARCHAR(20) NN FK(nurses)
+- address TEXT NN
+- location VARCHAR(30) NN
+- custom_number	INT NN UQ PK AI
+);
+
+tools (
+- tool_number INT	NN UQ PK
+- name VARCHAR(255)	NN
+- purpose TEXT NN
+- count	INT NN
+);
+
+care_records(
+- record_number	INT NN UQ PK AI
+- record_date DATE NN
+- contents TEXT NN
+- used_tool	INT	FK(tools)
+- count	INT
+- charger VARCHAR(20) NN FK(nurses)
+- custom_number	INT NN FK(customers)
+);
