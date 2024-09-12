@@ -180,17 +180,17 @@ tel_auth_number (
 );
 
 customers (
+- custom_number	INT NN UQ PK AI
 - profile_image	TEXT NN 
 - name VARCHAR(15)	NN 
 - birth VARCHAR(6) NN
 - charger VARCHAR(20) NN FK(nurses)
 - address TEXT NN
-- location VARCHAR(30) NN
-- custom_number	INT NN UQ PK AI
+- location VARCHAR(60) NN
 );
 
 tools (
-- tool_number INT	NN UQ PK
+- tool_number INT	NN UQ PK AI
 - name VARCHAR(255)	NN
 - purpose TEXT NN
 - count	INT NN
