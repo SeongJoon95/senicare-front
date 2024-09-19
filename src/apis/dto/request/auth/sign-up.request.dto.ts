@@ -7,5 +7,6 @@ export default interface SignUpRequestDto {
     telNumber: string;
     authNumber: string;
     joinPath: string;
-    snsId?: string; // 필수가 아니라서 속성명 뒤에 '?'로 체크표시 해둘 것
+    // snsId?: string; // 선택적으로 사용하기 위해 속성명 뒤에 '?'로 체크표시 해둔 것
+    snsId: string | null;
 }
