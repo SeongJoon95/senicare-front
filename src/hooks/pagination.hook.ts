@@ -20,8 +20,10 @@ const usePagination = <T>() => {
     const init = (totalList: T[]) => {
         const totalCount = totalList.length;
         setTotalCount(totalCount)
+
         const totalPage = Math.ceil(totalCount / ITEMS_PER_PAGE);
         setTotalPage(totalPage);
+
         const totalSection = Math.ceil(totalPage / PAGES_PER_SECTION);
         setTotalSection(totalSection);
 
@@ -29,8 +31,8 @@ const usePagination = <T>() => {
             setCurrentPage(0);
             setCurrentSection(0);
         } else {
-        setCurrentPage(1);
-        setCurrentSection(1);
+            setCurrentPage(1);
+            setCurrentSection(1);
         }
     }
 
@@ -39,15 +41,16 @@ const usePagination = <T>() => {
         const totalCount = totalList.length;
         const startIndex = ITEMS_PER_PAGE * (currentPage -1);
         let endIndex = startIndex + ITEMS_PER_PAGE;
+
         if(endIndex > totalCount) endIndex = totalCount;
 
-        const viewList = totalList.splice(startIndex, endIndex);
+        const viewList = totalList.slice(startIndex, endIndex);
         setViewList(viewList)
     }
 
     // function: 섹션 변경 함수 //
     const initPageList = (totalPage: number) => {
-        if(totalPage) {
+        if(!totalPage) {
             setPageList([]);
             return;
         }
@@ -69,9 +72,9 @@ const usePagination = <T>() => {
     
     // event handler: 이전 섹션 클릭 이벤트 처리 함수 //
     const onPreSectionClickHandler = () => {
-        if (currentSection === 1) return;
+        if (currentSection <= 1) return;
         setCurrentSection(currentSection -1);
-        setCurrentPage ((currentSection -1) * PAGES_PER_SECTION);
+        setCurrentPage((currentSection -1) * PAGES_PER_SECTION);
     }
     
     // event handler: 다음 섹션 클릭 이벤트 처리 함수 //
@@ -108,6 +111,7 @@ const usePagination = <T>() => {
         onPageClickHandler,
         onPreSectionClickHandler,
         onNextSectionClickHandler
+
     };
 };
 
