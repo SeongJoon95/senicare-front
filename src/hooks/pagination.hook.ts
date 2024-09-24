@@ -18,9 +18,12 @@ const usePagination = <T>() => {
 
     //function: 전체 리스트 변경 함수 //
     const init = (totalList: T[]) => {
+        // totalCount : totalList의 전체길이
         const totalCount = totalList.length;
         setTotalCount(totalCount)
 
+        // ceil : 올림 함수
+        // totalPage: 전체 페이즈 갯수 -> 전체갯수 / 한페이지당 갯수
         const totalPage = Math.ceil(totalCount / ITEMS_PER_PAGE);
         setTotalPage(totalPage);
 
@@ -63,6 +66,7 @@ const usePagination = <T>() => {
     }
 
     // event handler: 페이지 클릭 이벤트 처리 함수 //
+    
     const onPageClickHandler = (page: number) => {
         setCurrentPage(page);
     }

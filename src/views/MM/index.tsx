@@ -9,7 +9,6 @@ import { Tool } from 'src/types';
 import { GetToolListResponseDto, GetToolResponseDto } from 'src/apis/dto/response/tool';
 import { usePagination } from 'src/hooks';
 import Pagination from 'src/components/Pagination';
-import { errorMonitor } from 'events';
 
 // interface: 용품 등록 컴포넌트 Properties //
 interface PostBoxProps {
@@ -18,7 +17,7 @@ interface PostBoxProps {
 }
 
 // component: 용품 등록 컴포넌트 //
-function PostBox({unShow,getToolList}: PostBoxProps) {
+function PostBox({unShow, getToolList}: PostBoxProps) {
 
     // state: cookie상태 //
     const [cookies] = useCookies();
@@ -29,8 +28,7 @@ function PostBox({unShow,getToolList}: PostBoxProps) {
     const [count, setCount] = useState<string>('');
 
     // function: post tool response 처리함수 //
-    const 
-    postToolResponse = (responseBody: ResponseDto | null) => {
+    const postToolResponse = (responseBody: ResponseDto | null) => {
         const message = 
             !responseBody ? '서버에 문제가 있습니다.' :
             responseBody.code === 'VF' ? '모두 입력해주세요.' :
