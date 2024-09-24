@@ -3,8 +3,8 @@ import { IdCheckRequestDto, SignInRequestDto, SignUpRequestDto, TelAuthCheckRequ
 import { ResponseDto } from "./dto/response";
 import { SignInResponseDto } from "./dto/response/auth";
 import { GetSignInResponseDto } from "./dto/response/nurse";
-import { PostToolRequestDto } from "./dto/request/tool";
-import { GetToolListResponseDto } from "./dto/response/tool";
+import { PatchToolRequestDto, PostToolRequestDto } from "./dto/request/tool";
+import { GetToolListResponseDto, GetToolResponseDto } from "./dto/response/tool";
 
 // variable : API URL 상수 //
 const SENICARE_API_DOMAIN = 'http://localhost:4000';
@@ -18,12 +18,17 @@ const SIGN_UP_API_URL = `${AUTH_MODULE_URL}/sign-up`;
 const SIGN_IN_API_URL = `${AUTH_MODULE_URL}/sign-in`;
 
 const NURSE_MODUEL_URL = `${SENICARE_API_DOMAIN}/api/v1/nurse`;
+
 const GET_SIGN_IN_API_URL = `${NURSE_MODUEL_URL}/sign-in`;
 
 const TOOL_MODULE_URL = `${SENICARE_API_DOMAIN}/api/v1/tool`;
 
 const POST_TOOL_API_URL = `${TOOL_MODULE_URL}`;
 const GET_TOOL_LIST_API_URL = `${TOOL_MODULE_URL}`;
+// 띄우면 안됌
+const GET_TOOL_API_URL = (toolNumber: number | string) => `${TOOL_MODULE_URL}/${toolNumber}`;
+const PATCH_TOOL_API_URL = (toolNumber: number | string) => `${TOOL_MODULE_URL}/${toolNumber}`;
+const DELETE_TOOL_API_URL = (toolNumber: number | string) => `${TOOL_MODULE_URL}/${toolNumber}`;
 
 // function : Authorization Bearer 헤더 //
 const bearerAuthorization = (accessToken: string) => ({headers: {'Authorization': `Bearer ${accessToken}`}})
@@ -105,7 +110,31 @@ export const postToolRequest = async(requestBody: PostToolRequestDto, accessToke
 // function: get tool list request 요청 함수 //
 export const getToolListRequest = async (accessToken: string) => {
     const responseBody = await axios.get(GET_TOOL_LIST_API_URL, bearerAuthorization(accessToken))
-        .then(responseDataHandler<GetToolListResponseDto>)
-        .catch(responseErrorHandler)
-        return responseBody;
+    .then(responseDataHandler<GetToolListResponseDto>)
+    .catch(responseErrorHandler)
+    return responseBody;
+}
+
+// function: get tool  요청 함수 //
+export const getToolRequest = async (toolNumber: number | string, accessToken: string) => {
+    const responseBody = await axios.get(GET_TOOL_API_URL(toolNumber), bearerAuthorization(accessToken))
+        .then(responseDataHandler<GetToolResponseDto>)
+        .catch(responseErrorHandler);
+    return responseBody;
+}
+
+// function: patch tool 요청 함수 //
+export const patchToolRequest = async (requestBody: PatchToolRequestDto, toolNumber: number | string, accessToken: string) => {
+    const responseBody = await axios.patch(PATCH_TOOL_API_URL(toolNumber), requestBody, bearerAuthorization(accessToken))
+        .then(responseDataHandler<ResponseDto>)
+        .catch(responseErrorHandler);
+    return responseBody;
+}
+
+// function: delete tool 요청 함수 //
+export const deleteToolRequest = async (toolNumber: number | string, accessToken: string) => {
+    const responseBody = await axios.delete(DELETE_TOOL_API_URL(toolNumber), bearerAuthorization(accessToken))
+        .then(responseDataHandler<ResponseDto>)
+        .catch(responseErrorHandler);
+    return responseBody;
 }
