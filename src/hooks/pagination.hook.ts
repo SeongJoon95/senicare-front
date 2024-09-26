@@ -111,7 +111,6 @@ const usePagination = <T>() => {
         onPageClickHandler,
         onPreSectionClickHandler,
         onNextSectionClickHandler
-
     };
 };
 
