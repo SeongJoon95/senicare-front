@@ -15,7 +15,10 @@ react-router, react-router-dom, react-cookie, zustand, axios
 
 한번에 다운로드 받는 명령어 
 ' npm i react-router react-router-dom react-cookie zustand axios '
-
+```bash
+npm install dayjs // 추가 - 날짜 관련
+npm install react-daum-postcode // 다음에서 제공하는 주소 검색하는 install
+```
 ###### 패키지 설치
 ```bash
 npm install

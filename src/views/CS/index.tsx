@@ -5,7 +5,7 @@ import Pagination from 'src/components/Pagination';
 import { Customer } from 'src/types';
 import { useSignInUserStore } from 'src/stores';
 import { useCookies } from 'react-cookie';
-import { ACCESS_TOKEN, CS_DETAIL_ABSOLUTE_PATH, CS_UPDATE_ABSOLUTE_PATH } from 'src/constants';
+import { ACCESS_TOKEN, CS_DETAIL_ABSOLUTE_PATH, CS_UPDATE_ABSOLUTE_PATH, CS_WRITE_ABSOLUTE_PATH } from 'src/constants';
 import { deleteCustomerRequest, getCustomerListRequest } from 'src/apis';
 import { GetCustomerListResponseDto } from 'src/apis/dto/response/customer';
 import { ResponseDto } from 'src/apis/dto/response';
@@ -117,6 +117,9 @@ export default function CS() {
         ...PaginationProps
     } = usePagination<Customer>();
 
+    // function: 네비케이터 함수 //
+    const navigator = useNavigate();
+
     // function: customer list 불러오기 함수 //
     const getCustomerList = () => {
         const accessToken = cookies[ACCESS_TOKEN];
@@ -142,6 +145,10 @@ export default function CS() {
         setOriginalList(customers);
     }
 
+    // event handler: 등록 버튼 클릭 이벤트 처리 함수//
+    const onPostButtonClickHandler = () => {
+        navigator(CS_WRITE_ABSOLUTE_PATH);
+    }
 
     // event handler: 검색어 변경 이벤트 처리 함수 //
     const onSearchWordChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -166,6 +173,7 @@ export default function CS() {
         <div id='cs-wrapper'>
             <div className='top'>
                 <div className='top-text'>전체 <span className='emphasis'> {totalCount}건</span> | 페이지 <span className='emphasis'>{currentPage}/{totalPage}</span></div>
+                <div className='button primary' onClick={onPostButtonClickHandler}>등록</div>
             </div>
             <div className='main'>
                 <div className='table'>
