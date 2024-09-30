@@ -15,7 +15,7 @@ import Pagination from 'src/components/Pagination';
 import { GetCustomerResponseDto } from 'src/apis/dto/response/customer';
 
 // variable: 기본 프로필 이미지 URL //
-const defaultProfileImageUrl = 'http://localhost:4000/file/d4a01e3c-6312-4bdc-99cf-0fc5a3108d02.png';
+const defaultProfileImageUrl = 'https://blog.kakaocdn.net/dn/4CElL/btrQw18lZMc/Q0oOxqQNdL6kZp0iSKLbV1/img.png';
 
 // component : 고객 정보 수정 화면 컴포넌트 //
 export default function CSUpdate() {
@@ -231,7 +231,7 @@ export default function CSUpdate() {
         const accessToken = cookies[ACCESS_TOKEN];
         if(!accessToken) return;
 
-        let url: string | null = defaultProfileImageUrl;
+        let url: string | null = null;
         if(profileImageFile) {
             const formData = new FormData()
             formData.append('file', profileImageFile);
