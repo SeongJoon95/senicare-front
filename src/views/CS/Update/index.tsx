@@ -231,7 +231,7 @@ export default function CSUpdate() {
         const accessToken = cookies[ACCESS_TOKEN];
         if(!accessToken) return;
 
-        let url: string | null = defaultProfileImageUrl;
+        let url: string | null = null;
         if(profileImageFile) {
             const formData = new FormData()
             formData.append('file', profileImageFile);

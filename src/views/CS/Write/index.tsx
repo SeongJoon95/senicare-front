@@ -262,7 +262,7 @@ export default function CSWrite() {
             <div className='bottom'>
                 <div className='button primary' onClick={onListButtonClickHandler}>목록</div>
                 <div className='button second' onClick={onPostClickHandler}>등록</div>
-            </div>
+            </div>``
             {modalOpen &&
             <div className='modal'>
                 <div className='modal-box'>

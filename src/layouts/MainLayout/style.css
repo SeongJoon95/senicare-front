@@ -118,27 +118,27 @@
 }
 
 .cs-icon {
-    background-image: url(/public/images/고양이1.jpg);
+    background-image: url(/public/images/navigation-icon/cs-icon.png);
 }
 
 .mm-icon {
-    background-image: url(/public/images/고양이2.jpg);
+    background-image: url(/public/images/navigation-icon/mm-icon.png);
 }
 
 .hr-icon {
-    background-image: url(/public/images/고양이3.jpeg);
+    background-image: url(/public/images/navigation-icon/hr-icon.png);
 }
 
 .cs-active-icon {
-    background-image: url(/public/images/고양이1.jpg);
+    background-image: url(/public/images/navigation-active-icon/cs-active-icon.png);
 }
 
 .mm-active-icon {
-    background-image: url(/public/images/고양이2.jpg);
+    background-image: url(/public/images/navigation-active-icon/mm-active-icon.png);
 }
 
 .hr-active-icon {
-    background-image: url(/public/images/고양이3.jpeg);
+    background-image: url(/public/images/navigation-active-icon/hr-active-icon.png);
 }
 
 #main-wrapper .table {
