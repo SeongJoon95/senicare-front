@@ -7,6 +7,22 @@
   
 요양사를 위한 고객, 인사, 물자 관리 ERP 프로젝트
 
+ 
+###### 한번에 다운로드 받는 명령어
+```bash
+npm i react-router react-router-dom react-cookie zustand axios
+```
+
+###### 날짜 관련
+```bash
+npm install dayjs
+```
+
+###### 다음에서 제공하는 주소 검색하는 install
+```bash
+npm install react-daum-postcode
+```
+
 #### package
 react-router, react-router-dom, react-cookie, zustand, axios
 
