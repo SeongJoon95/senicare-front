@@ -9,8 +9,8 @@ import { GetCareRecordResponseDto, GetCustomerListResponseDto, GetCustomerRespon
 import { PatchCustomerRequestDto, PostCareRecordRequestDto, PostCustomerRequestDto } from "./dto/request/customer";
 import { PatchNurseRequestDto } from "./dto/request/nurse";
 
-// variable : API URL 상수 //
-const SENICARE_API_DOMAIN = 'http://localhost:4000';
+// variable: API URL 상수 //
+const SENICARE_API_DOMAIN = process.env.REACT_APP_API_URL;
 
 const AUTH_MODULE_URL = `${SENICARE_API_DOMAIN}/api/v1/auth`;
 
@@ -47,11 +47,11 @@ const DELETE_CUSTOMER_APT_URL = (customerNumber: number | string) => `${CUSTOMER
 const POST_CARE_RECORD_API_URL = (customerNumber: number | string) => `${CUSTOMER_MODULE_URL}/${customerNumber}/care-record`;
 const GET_CARE_RECORD_LIST_API_URL = (customerNumber: number | string) => `${CUSTOMER_MODULE_URL}/${customerNumber}/care-records`;
 
-// function : Authorization Bearer 헤더 //
+// function: Authorization Bearer 헤더 //
 const bearerAuthorization = (accessToken: string) => ({headers: {'Authorization': `Bearer ${accessToken}`}})
 
 // ! 중복되는 성공에 대한 함수를 따로 만들었음.
-// function : response data 처리 함수 //
+// function: response data 처리 함수 //
 const responseDataHandler = <T>(response: AxiosResponse<T, any>) => {
         const { data } = response;
         return data;
@@ -65,7 +65,7 @@ const responseErrorHandler = (error: any) =>{
     return data as ResponseDto;
 }
 
-// function : id check api 요청함수 //
+// function: id check api 요청함수 //
 export const idCheckRequest = async (requestBody:IdCheckRequestDto) => {
     // axios는 기본적으로 비동기
     // axios: JavaScript에서 HTTP 요청을 간편하게 보내고 응답을 처리할 수 있도록 도와주는 라이브러리.
@@ -76,7 +76,7 @@ export const idCheckRequest = async (requestBody:IdCheckRequestDto) => {
     return responseBody;
 };
 
-// function : tel auth api 요청 함수 //
+// function: tel auth api 요청 함수 //
 export const telAuthRequest = async (requestBody: TelAuthRequestDto) => {
     const responseBody = await axios.post(TEL_AUTH_API_URL, requestBody)
         .then(responseDataHandler<ResponseDto>)
@@ -92,7 +92,7 @@ export const telAuthCheckRequest = async (requestBody: TelAuthCheckRequestDto) =
     return responseBody;
 }
 
-// function : sign up 요청 함수//
+// function: sign up 요청 함수//
 export const signUpRequest = async (requestBody: SignUpRequestDto) => {
     const responseBody = axios.post(SIGN_UP_API_URL, requestBody)
         .then(responseDataHandler<ResponseDto>)
@@ -215,7 +215,7 @@ export const getCustomerRequest = async (customerNumber: number|string, accessTo
 
 }
 
-// function : patch customer 요청 함수 //
+// function: patch customer 요청 함수 //
 export const patchCustomerRequest = async (requestBody: PatchCustomerRequestDto, customerNumber: number|string, accessToken: string) => {
     const responseBody = await axios.patch(PATCH_CUSTOMER_API_URL(customerNumber), requestBody, bearerAuthorization(accessToken))
         .then(responseDataHandler<ResponseDto>)
